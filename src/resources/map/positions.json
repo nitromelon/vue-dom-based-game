@@ -1,0 +1,684 @@
+[
+    {
+        "filename": "house chunk_2.png",
+        "position": {
+            "x": 606,
+            "y": 0
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_3.png",
+        "position": {
+            "x": 1212,
+            "y": 0
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_4.png",
+        "position": {
+            "x": 1818,
+            "y": 0
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_8.png",
+        "position": {
+            "x": 4242,
+            "y": 0
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_12.png",
+        "position": {
+            "x": 0,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_13.png",
+        "position": {
+            "x": 606,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_14.png",
+        "position": {
+            "x": 1212,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_15.png",
+        "position": {
+            "x": 1818,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_16.png",
+        "position": {
+            "x": 2424,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_17.png",
+        "position": {
+            "x": 3030,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_18.png",
+        "position": {
+            "x": 3636,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_19.png",
+        "position": {
+            "x": 4242,
+            "y": 283
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_23.png",
+        "position": {
+            "x": 0,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_24.png",
+        "position": {
+            "x": 606,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_25.png",
+        "position": {
+            "x": 1212,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_26.png",
+        "position": {
+            "x": 1818,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_27.png",
+        "position": {
+            "x": 2424,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_28.png",
+        "position": {
+            "x": 3030,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_29.png",
+        "position": {
+            "x": 3636,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_30.png",
+        "position": {
+            "x": 4242,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_31.png",
+        "position": {
+            "x": 4848,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_32.png",
+        "position": {
+            "x": 5454,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_33.png",
+        "position": {
+            "x": 6060,
+            "y": 566
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_34.png",
+        "position": {
+            "x": 0,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_35.png",
+        "position": {
+            "x": 606,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_36.png",
+        "position": {
+            "x": 1212,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_37.png",
+        "position": {
+            "x": 1818,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_38.png",
+        "position": {
+            "x": 2424,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_39.png",
+        "position": {
+            "x": 3030,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_40.png",
+        "position": {
+            "x": 3636,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_41.png",
+        "position": {
+            "x": 4242,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_42.png",
+        "position": {
+            "x": 4848,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_43.png",
+        "position": {
+            "x": 5454,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_44.png",
+        "position": {
+            "x": 6060,
+            "y": 849
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_45.png",
+        "position": {
+            "x": 0,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_49.png",
+        "position": {
+            "x": 2424,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_50.png",
+        "position": {
+            "x": 3030,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_51.png",
+        "position": {
+            "x": 3636,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_52.png",
+        "position": {
+            "x": 4242,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_53.png",
+        "position": {
+            "x": 4848,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_54.png",
+        "position": {
+            "x": 5454,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_55.png",
+        "position": {
+            "x": 6060,
+            "y": 1132
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_60.png",
+        "position": {
+            "x": 2424,
+            "y": 1415
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_61.png",
+        "position": {
+            "x": 3030,
+            "y": 1415
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_62.png",
+        "position": {
+            "x": 3636,
+            "y": 1415
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_63.png",
+        "position": {
+            "x": 4242,
+            "y": 1415
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_64.png",
+        "position": {
+            "x": 4848,
+            "y": 1415
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_65.png",
+        "position": {
+            "x": 5454,
+            "y": 1415
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_66.png",
+        "position": {
+            "x": 6060,
+            "y": 1415
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_71.png",
+        "position": {
+            "x": 2424,
+            "y": 1698
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_72.png",
+        "position": {
+            "x": 3030,
+            "y": 1698
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_73.png",
+        "position": {
+            "x": 3636,
+            "y": 1698
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_74.png",
+        "position": {
+            "x": 4242,
+            "y": 1698
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_82.png",
+        "position": {
+            "x": 2424,
+            "y": 1981
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_83.png",
+        "position": {
+            "x": 3030,
+            "y": 1981
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_84.png",
+        "position": {
+            "x": 3636,
+            "y": 1981
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_85.png",
+        "position": {
+            "x": 4242,
+            "y": 1981
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_94.png",
+        "position": {
+            "x": 3030,
+            "y": 2264
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_104.png",
+        "position": {
+            "x": 2424,
+            "y": 2547
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_105.png",
+        "position": {
+            "x": 3030,
+            "y": 2547
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_115.png",
+        "position": {
+            "x": 2424,
+            "y": 2830
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    },
+    {
+        "filename": "house chunk_116.png",
+        "position": {
+            "x": 3030,
+            "y": 2830
+        },
+        "size": {
+            "width": 606,
+            "height": 283
+        }
+    }
+]
