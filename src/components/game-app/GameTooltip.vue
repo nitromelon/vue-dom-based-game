@@ -1,8 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MainTitleBar from "./tooltip/MainTitleBar.vue";
+import MainNotification from "./tooltip/MainNotification.vue";
+import TooltipNavigation from "./tooltip/TooltipNavigation.vue";
+import { computed } from "vue";
+
+const is_portrait = computed(() => {
+    return window.innerHeight > window.innerWidth;
+});
+</script>
 
 <template>
     <div class="game-tooltip">
-        <h1>Text holder for game tooltip</h1>
+        <RouterView />
+        <MainTitleBar></MainTitleBar>
+        <MainNotification></MainNotification>
+        <!-- <TooltipNavigation v-if="is_portrait"></TooltipNavigation> -->
     </div>
 </template>
 

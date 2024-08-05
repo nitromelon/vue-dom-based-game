@@ -19,8 +19,8 @@ defineProps<{
             opacity: style.opacity /* !== 1 ? 0: 1 */,
         }"
     >
-        <h1>{{ debug }}</h1>
-        <div class="thing"></div>
+        <!-- <h1>{{ debug }}</h1>
+        <div class="thing"></div> -->
     </div>
 </template>
 

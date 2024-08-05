@@ -16,6 +16,9 @@ import {
     map_set_up_chunk_linking,
 } from "@/data/base/welcome-to-the-madness";
 import { EventEntityDistanceType } from "@/data/core/event_entity";
+import EventEntityChain from "@/data/base/event-entity-chain";
+import { should_show_notification } from "@/data/state/notification";
+import { keyboard_streamer_should_stop } from "@/data/state/keyboard";
 
 const map = BaseGameMap.new();
 const chunks = await Promise.all(basechunk_extract_map_data().map((v) => BaseChunk.new(v, [])));
@@ -42,28 +45,33 @@ map_set_up_chunk_linking(map.map, chunks); // 🗣️🔥🔥🔥
 map_set_up_chunk_bricks(chunks); // 🗣️🔥🔥🔥
 
 // quầy lễ tân
-let collide = false;
-chunks[59].create_relative_entity(34, 384, 82, 103).with_distance_callback((in_out) => {
-    // callback have input: number but maybe we don't need that
-    switch (in_out) {
-        case EventEntityDistanceType.In:
-            collide = true;
+const notification_state = should_show_notification();
+const register_entity = chunks[59].create_relative_entity(34, 384, 82, 103).with_distance_callback(
+    EventEntityChain.new()
+        .with_in(() => {
             console.log("in");
-            break;
-        case EventEntityDistanceType.Out:
-            if (collide) {
-                collide = false;
-                console.log("out");
-            }
-            break;
-    }
-});
+            notification_state.on("register");
+        })
+        .with_out(() => {
+            console.log("out");
+            notification_state.off();
+        })
+        .export(),
+);
 
 // quầy cà phê
-chunks[4].create_relative_entity(171, 134, 85, 101).with_distance_callback(() => {
-    // same as above
-    // alert("lol");
-});
+const cafe_entity = chunks[4].create_relative_entity(171, 134, 85, 101).with_distance_callback(
+    EventEntityChain.new()
+        .with_in(() => {
+            console.log("in");
+            notification_state.on("coffee");
+        })
+        .with_out(() => {
+            console.log("out");
+            notification_state.off();
+        })
+        .export(),
+);
 
 map.map.calbrate_position_from(main_char_entity);
 
@@ -118,11 +126,30 @@ const callback = (d: DirectionType, steps: number) => {
     map.map.calbrate_position_from(main_char.info);
 };
 
+const DEBUG_CAMERA_MULTIPLY = 5;
+
 onMounted(() => {
     window.addEventListener("resize", () => {
         map.map.calbrate_position_from(main_char.info);
     });
-    KeyboardEventStreamer.get_instance().add_callback(keyboard_direction(callback));
+    KeyboardEventStreamer
+        .get_instance()
+        .with_stop_state(keyboard_streamer_should_stop())
+        .add_callback(keyboard_direction(callback))
+        .add_callback((keys) => {
+            const value = get_steps_reference() * DEBUG_CAMERA_MULTIPLY;
+            if (keys.has("ArrowUp")) {
+                map.map.position.y += value;
+            } else if (keys.has("ArrowDown")) {
+                map.map.position.y -= value;
+            }
+
+            if (keys.has("ArrowLeft")) {
+                map.map.position.x += value;
+            } else if (keys.has("ArrowRight")) {
+                map.map.position.x -= value;
+            }
+        });
 });
 </script>
 
@@ -176,12 +203,8 @@ onMounted(() => {
 <template>
     <div id="wrapper">
         <MainMap :style="map.get_style()">
-            <MainChunk
-                v-for="(chunk_style, index) in reactive(chunks.map((c) => c.get_style()))"
-                :key="index"
-                :style="chunk_style"
-                :debug="index"
-            />
+            <MainChunk v-for="(chunk_style, index) in reactive(chunks.map((c) => c.get_style()))" :key="index"
+                :style="chunk_style" :debug="index" />
             <MainCharEntity :style="main_char.get_style()" />
         </MainMap>
     </div>

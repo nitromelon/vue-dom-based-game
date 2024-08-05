@@ -92,6 +92,8 @@ export default class Entity extends Thing {
         );
     }
 
+    // this is wrong name for this method: Only register callbacks that will yield "in" or "out"
+    // as main char approach event entity.
     with_distance_callback(distance_callback: EntityDistanceCallback): Entity {
         this.distance_callbacks.push(distance_callback);
         return this;

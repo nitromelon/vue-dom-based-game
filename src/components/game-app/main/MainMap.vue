@@ -22,5 +22,6 @@ defineProps<{
 <style scoped>
 .main {
     position: absolute;
+    transition: 0.25s cubic-bezier(0, 1, 0, 1);
 }
 </style>

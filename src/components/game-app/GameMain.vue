@@ -23,5 +23,6 @@ import GamePlay from "./GamePlay.vue";
 * {
     image-rendering: pixelated;
     background-size: cover;
+    font-family: monospace !important;
 }
 </style>
