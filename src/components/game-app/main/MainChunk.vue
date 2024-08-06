@@ -8,17 +8,14 @@ defineProps<{
 </script>
 
 <template>
-    <div
-        class="map-chunk"
-        :style="{
-            top: `${style.top}px`,
-            left: `${style.left}px`,
-            width: `${style.width}px`,
-            height: `${style.height}px`,
-            backgroundImage: `url(${style.backgroundImage})`,
-            opacity: style.opacity /* !== 1 ? 0: 1 */,
-        }"
-    >
+    <div class="map-chunk" :style="{
+        top: `${style.top}px`,
+        left: `${style.left}px`,
+        width: `${style.width}px`,
+        height: `${style.height}px`,
+        backgroundImage: `url(${style.backgroundImage})`,
+        opacity: style.opacity,
+    }">
         <!-- <h1>{{ debug }}</h1>
         <div class="thing"></div> -->
     </div>
@@ -27,6 +24,7 @@ defineProps<{
 <style scoped>
 .map-chunk {
     position: absolute;
+    opacity: 0;
     transition: opacity 0.5s;
 }
 

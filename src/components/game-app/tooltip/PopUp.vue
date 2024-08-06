@@ -1,7 +1,9 @@
 <template>
     <div class="pop-up-bg" v-if="is_valid" ref="popup_bg">
         <div class="pop-up">
-            <h1>{{ path_id.charAt(0).toUpperCase() + path_id.slice(1) }}</h1>
+            <div class="display">
+                <component :is="component_table_lookup"></component>
+            </div>
             <div class="close">
                 <RouterLink to="/" id="close">X</RouterLink>
             </div>
@@ -11,20 +13,32 @@
 
 <script setup lang="ts">
 import { keyboard_streamer_should_stop } from "@/data/state/keyboard";
-import { onMounted, onUnmounted } from "vue";
+import { defineAsyncComponent, onMounted, onUnmounted, type ComponentOptionsMixin, type DefineComponent, type ExtractPropTypes, type PublicProps } from "vue";
 import { useRoute } from "vue-router";
+type Component = DefineComponent<{}, {}, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<ExtractPropTypes<{}>>, {}, {}>;
 
 const keyboard_stop_state = keyboard_streamer_should_stop();
 const route = useRoute();
 const STORES_NAME = new Set(["register", "coffee"]);
 
 let path_id = route.params.id;
+
 if (Array.isArray(path_id)) {
     path_id = path_id[0] || "";
 }
 
 const is_valid = STORES_NAME.has(path_id);
-
+let component_table_lookup: undefined | Component = undefined;
+switch (path_id) {
+    case "register":
+        component_table_lookup = defineAsyncComponent(() => import("./place/RegisterPlace.vue"));
+        break;
+    case "coffee":
+        component_table_lookup = defineAsyncComponent(() => import("./place/CoffeePlace.vue"));
+        break;
+    default:
+        break;
+}
 onMounted(() => {
     keyboard_stop_state.on();
 })
@@ -69,10 +83,6 @@ onUnmounted(() => {
     justify-content: center;
 }
 
-p {
-    color: white;
-}
-
 .close {
     position: absolute;
     right: -24px;
@@ -82,5 +92,12 @@ p {
     background: #f2e5bc;
     border-radius: 8px;
     border: 1px solid black;
+}
+
+.display {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
 }
 </style>

@@ -1,25 +1,37 @@
 <template>
     <div class="titlebar">
-        <div v-for="(s, index) in SLOTS_NUMBER" :key="s" class="items" :class="{ selected: index === selected }" :style="{
-            transform: `scale(${0.5 / (Math.abs(index - selected) + 1) + 0.5})`,
-        }" @click="click_callback(index)">
-            <h2>Slot {{ index + 1 }}</h2>
+        <div v-for="(s, index) in MAX_INVENTORY" :key="s" class="items" :class="{ selected: index === selected }"
+            :style="{
+                transform: `scale(${0.5 / (Math.abs(index - selected) + 1) + 0.5})`,
+            }" @click="click_callback(index)">
+            <h2 v-if="state.slot[index] === undefined">Slot {{ index + 1 }}</h2>
+            <div v-else class="wrapper">
+                <div class="image" :style="{ backgroundImage: `url(${state.slot[index]})` }">
+                    <p>1</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import debounce from "@/data/base/debounce";
+import { inventory, MAX_INVENTORY } from "@/data/state/inventory";
 import { onMounted, onUnmounted, ref } from "vue";
 
-const SLOTS_NUMBER = 7;
+const state = inventory();
 const selected = ref(0);
+
 const wheel_callback = debounce((e: WheelEvent) => {
-    // e.preventDefault();
+    const target = e.target as HTMLElement;
+    if (target.closest('.pop-up')) {
+        return;
+    }
+
     if (e.deltaY > 0) {
-        selected.value = (selected.value + 1) % SLOTS_NUMBER;
+        selected.value = (selected.value + 1) % MAX_INVENTORY;
     } else {
-        selected.value = (selected.value - 1 + SLOTS_NUMBER) % SLOTS_NUMBER;
+        selected.value = (selected.value - 1 + MAX_INVENTORY) % MAX_INVENTORY;
     }
 }, 30);
 
@@ -72,12 +84,36 @@ onUnmounted(() => {
     background: #d5c4a1;
     border-radius: 8px;
     z-index: 0;
-
+    overflow: hidden;
     transition: 0.25s cubic-bezier(0, 0, 0, 1);
 }
 
 .selected {
     background: #fbf1c7;
     z-index: 1;
+}
+
+.wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    position: relative;
+    height: calc(100% - 8px);
+    aspect-ratio: 1;
+    border-radius: 8px;
+    border: 1px solid #1d2021;
+}
+
+.image p {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    font-size: 20px;
 }
 </style>

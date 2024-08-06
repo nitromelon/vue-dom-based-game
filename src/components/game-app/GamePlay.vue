@@ -74,6 +74,7 @@ const cafe_entity = chunks[4].create_relative_entity(171, 134, 85, 101).with_dis
 );
 
 map.map.calbrate_position_from(main_char_entity);
+// map.map.set_opacity_gradient_from(current_chunk)
 
 const diagonal_number = Math.sqrt(2) / 2;
 const callback = (d: DirectionType, steps: number) => {
@@ -205,7 +206,9 @@ onMounted(() => {
         <MainMap :style="map.get_style()">
             <MainChunk v-for="(chunk_style, index) in reactive(chunks.map((c) => c.get_style()))" :key="index"
                 :style="chunk_style" :debug="index" />
-            <MainCharEntity :style="main_char.get_style()" />
+            
+            <!-- modify to make it an array. but only me = true -->
+            <MainCharEntity :style="main_char.get_style()" :this_user=true />
         </MainMap>
     </div>
 </template>

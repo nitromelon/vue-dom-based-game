@@ -67,6 +67,11 @@ export default class KeyboardEventStreamer {
         return this;
     }
 
+    remove_callback(callback: KeyboardEventCallback): KeyboardEventStreamer {
+        this._callback.delete(callback);
+        return this;
+    }
+
     with_stop_state(plugin: KeyboardStopState): KeyboardEventStreamer {
         this._keyboard_stop = plugin;
         return this;
