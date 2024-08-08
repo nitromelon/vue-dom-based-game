@@ -6,7 +6,8 @@
             }" @click="click_callback(index)">
             <h2 v-if="state.slot[index] === undefined">Slot {{ index + 1 }}</h2>
             <div v-else class="wrapper">
-                <div class="image" :style="{ backgroundImage: `url(${state.slot[index]})` }">
+                <div class="image" :style="{ backgroundImage: `url(${state.slot[index].url})` }"
+                    @click="callback(state.slot[index]?.id)">
                     <p>1</p>
                 </div>
             </div>
@@ -17,8 +18,10 @@
 <script setup lang="ts">
 import debounce from "@/data/base/debounce";
 import { inventory, MAX_INVENTORY } from "@/data/state/inventory";
+import { user_position } from "@/data/state/user_position";
 import { onMounted, onUnmounted, ref } from "vue";
 
+const user_state = user_position();
 const state = inventory();
 const selected = ref(0);
 
@@ -40,14 +43,76 @@ const keyboard_callback = (e: KeyboardEvent) => {
         e.preventDefault();
         const digit = parseInt(e.code.replace("Digit", ""));
         selected.value = digit - 1; // Convert 1-based digit to 0-based index
+    } else if (e.code === "e") {
+        e.preventDefault();
+        // use
     }
 };
 
 const click_callback = (index: number) => (selected.value = index);
 
+const callback = async (product_id: number | undefined) => {
+    if (product_id === undefined) return;
+
+    try {
+        const result = await fetch("http://localhost:3000/api/buy_delete/this", {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                product_id
+            }),
+            credentials: 'include'
+        })
+
+        console.log(result)
+
+        fetch("http://localhost:3000/api/buy_delete/this", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        }).then(r => r.json())
+            .then((r) => {
+                state.refresh(r)
+            })
+            .catch(e => console.log(e))
+    } catch (e) {
+        user_state.logged = false;
+        console.log(e)
+    }
+}
+
+if (user_state.logged === true) {
+    fetch("http://localhost:3000/api/buy_delete/this", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    }).then(r => r.json())
+        .then((r) => {
+            state.refresh(r)
+        })
+        .catch(e => console.log(e))
+}
+
 onMounted(() => {
     window.addEventListener("wheel", wheel_callback);
     window.addEventListener("keydown", keyboard_callback);
+    fetch("http://localhost:3000/api/buy_delete/this", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    }).then(r => r.json())
+        .then((r) => {
+            state.refresh(r)
+        })
+        .catch(e => console.log(e))
 });
 
 onUnmounted(() => {

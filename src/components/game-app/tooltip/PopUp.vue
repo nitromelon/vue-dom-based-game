@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, shallowRef, watch } from "vue";
 import { keyboard_streamer_should_stop } from "@/data/state/keyboard";
 import { defineAsyncComponent, onMounted, onUnmounted, type ComponentOptionsMixin, type DefineComponent, type ExtractPropTypes, type PublicProps } from "vue";
 import { useRoute } from "vue-router";
@@ -19,33 +20,53 @@ type Component = DefineComponent<{}, {}, {}, {}, {}, ComponentOptionsMixin, Comp
 
 const keyboard_stop_state = keyboard_streamer_should_stop();
 const route = useRoute();
-const STORES_NAME = new Set(["register", "coffee"]);
+const STORES_NAME = new Set(["register", "coffee", "login"]);
 
-let path_id = route.params.id;
+const path_id = ref(route.params.id);
 
-if (Array.isArray(path_id)) {
-    path_id = path_id[0] || "";
+if (Array.isArray(path_id.value)) {
+    path_id.value = path_id.value[0] || "";
 }
 
-const is_valid = STORES_NAME.has(path_id);
-let component_table_lookup: undefined | Component = undefined;
-switch (path_id) {
-    case "register":
-        component_table_lookup = defineAsyncComponent(() => import("./place/RegisterPlace.vue"));
-        break;
-    case "coffee":
-        component_table_lookup = defineAsyncComponent(() => import("./place/CoffeePlace.vue"));
-        break;
-    default:
-        break;
-}
+const is_valid = ref(STORES_NAME.has(path_id.value));
+const component_table_lookup = shallowRef<undefined | Component>(undefined);
+
+const updateComponent = () => {
+    switch (path_id.value) {
+        case "register":
+            component_table_lookup.value = defineAsyncComponent(() => import("./place/RegisterPlace.vue"));
+            break;
+        case "login":
+            component_table_lookup.value = defineAsyncComponent(() => import("./place/LoginPlace.vue"));
+            break;
+        case "coffee":
+            component_table_lookup.value = defineAsyncComponent(() => import("./place/CoffeePlace.vue"));
+            break;
+        default:
+            component_table_lookup.value = undefined;
+            break;
+    }
+};
+
+updateComponent();
+
+watch(() => route.params.id, (newId) => {
+    if (Array.isArray(newId)) {
+        path_id.value = newId[0] || "";
+    } else {
+        path_id.value = newId;
+    }
+    is_valid.value = STORES_NAME.has(path_id.value);
+    updateComponent();
+});
+
 onMounted(() => {
     keyboard_stop_state.on();
-})
+});
 
 onUnmounted(() => {
     keyboard_stop_state.off();
-})
+});
 </script>
 
 <style scoped>

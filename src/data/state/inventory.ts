@@ -1,6 +1,9 @@
 import { defineStore } from "pinia";
 
-export type CoffeeURL = string;
+export type CoffeeURL = {
+    url: string,
+    id: number,
+};
 
 export const MAX_INVENTORY = 7
 export const inventory = defineStore("inventory", {

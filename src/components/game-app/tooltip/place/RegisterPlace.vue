@@ -17,17 +17,25 @@
                 </ul>
             </div>
             <button type="submit" :disabled="hasErrors">Register</button>
+            <p class="error-server" v-if="server_error !== ''">Oops there has error: {{ server_error }}</p>
+            <p class="login">Already registered? <router-link to="/login">Login here</router-link></p>
         </form>
     </div>
 </template>
 
 <script setup lang="ts">
+import { user_position } from '@/data/state/user_position';
 import { ref, watch, computed } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const state = user_position();
 const user = ref({
     username: '',
     password: ''
 });
+
+const server_error = ref('');
 
 const usernameErrors = ref<string[]>([]);
 const passwordErrors = ref<string[]>([]);
@@ -74,10 +82,27 @@ const hasErrors = computed(() => {
     return usernameErrors.value.length > 0 || passwordErrors.value.length > 0;
 });
 
-const register = () => {
+const register = async () => {
     if (!hasErrors.value) {
         console.log('User:', user.value);
-        // Add registration logic
+        const input = JSON.stringify(user.value);
+        try {
+            const result = await fetch("http://localhost:3000/api/register", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: input,
+                credentials: 'include'
+            }).then(res => res.json());
+
+            console.log(result);
+            state.logged = true;
+            router.push("/")
+        } catch (error) {
+            server_error.value = JSON.stringify(error);
+        }
+
     }
 };
 </script>
@@ -136,11 +161,17 @@ button:disabled {
     cursor: not-allowed;
 }
 
-ul {
+ul,
+.error-server {
     color: red;
     margin: 0;
     padding: 0;
     list-style-type: none;
+}
+
+.error-server,
+.login {
+    margin-top: 8px;
 }
 
 li {

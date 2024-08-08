@@ -15,15 +15,17 @@ import {
     map_set_up_chunk_bricks,
     map_set_up_chunk_linking,
 } from "@/data/base/welcome-to-the-madness";
-import { EventEntityDistanceType } from "@/data/core/event_entity";
 import EventEntityChain from "@/data/base/event-entity-chain";
 import { should_show_notification } from "@/data/state/notification";
 import { keyboard_streamer_should_stop } from "@/data/state/keyboard";
+import { user_position } from "@/data/state/user_position";
+
+const main_char_position_state = user_position();
 
 const map = BaseGameMap.new();
 const chunks = await Promise.all(basechunk_extract_map_data().map((v) => BaseChunk.new(v, [])));
 
-const STARTER_NUMBER = 57;
+const STARTER_NUMBER = main_char_position_state.current_chunk;
 const main_char_entity = chunks[STARTER_NUMBER].create_relative_entity(50, 50, 32, 1);
 const main_char_image_promises = [
     "../../resources/entity/main/main1.png",
@@ -39,6 +41,10 @@ const main_char = BaseEntity.new(
     44,
 );
 
+const main_base_position = main_char.get_style().base
+main_char_position_state.x = main_base_position.left
+main_char_position_state.y = main_base_position.height
+
 let current_chunk = chunks[STARTER_NUMBER].info;
 
 map_set_up_chunk_linking(map.map, chunks); // 🗣️🔥🔥🔥
@@ -46,6 +52,7 @@ map_set_up_chunk_bricks(chunks); // 🗣️🔥🔥🔥
 
 // quầy lễ tân
 const notification_state = should_show_notification();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const register_entity = chunks[59].create_relative_entity(34, 384, 82, 103).with_distance_callback(
     EventEntityChain.new()
         .with_in(() => {
@@ -60,6 +67,7 @@ const register_entity = chunks[59].create_relative_entity(34, 384, 82, 103).with
 );
 
 // quầy cà phê
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const cafe_entity = chunks[4].create_relative_entity(171, 134, 85, 101).with_distance_callback(
     EventEntityChain.new()
         .with_in(() => {
@@ -206,7 +214,7 @@ onMounted(() => {
         <MainMap :style="map.get_style()">
             <MainChunk v-for="(chunk_style, index) in reactive(chunks.map((c) => c.get_style()))" :key="index"
                 :style="chunk_style" :debug="index" />
-            
+
             <!-- modify to make it an array. but only me = true -->
             <MainCharEntity :style="main_char.get_style()" :this_user=true />
         </MainMap>
